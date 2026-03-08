@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapper namespace="org.apache.ibatis.mapper.UserMapper">
+    <select id="selectUserById" parameterType="int" resultType="org.apache.ibatis.mapper.User">
+        SELECT id, name, age FROM users WHERE id = #{id}
+    </select>
+
+    <select id="selectAllUsers" resultType="org.apache.ibatis.mapper.User">
+        SELECT id, name, age FROM users
+    </select>
+
+    <insert id="insertUser" parameterType="org.apache.ibatis.mapper.User">
+        INSERT INTO users (name, age) VALUES (#{name}, #{age})
+    </insert>
+
+    <update id="updateUser" parameterType="org.apache.ibatis.mapper.User">
+        UPDATE users SET name = #{name}, age = #{age} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+
+    <select id="countUsers" resultType="int">
+        SELECT count(*) FROM users
+    </select>
+
+    <select id="getUserByMap" parameterType="map" resultType="org.apache.ibatis.mapper.User">
+        SELECT id, name, age FROM users WHERE name = #{name} AND age = #{age}
+    </select>
+
+    <select id="getUsersByName" parameterType="string" resultType="org.apache.ibatis.mapper.User">
+        SELECT id, name, age FROM users WHERE name LIKE #{name}
+    </select>
+</mapper>
